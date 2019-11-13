@@ -1,21 +1,12 @@
 'use strict'
 
 const { test } = require('tap')
-const { build } = require('../helper')
+const Fastify = require('fastify')
+const BasicAuth = require('../../plugins/basicAuth')
 
-test('user test fail', async (t) => {
-  const app = build(t)
-  // Basic YXJ5YTpzdGFyaw==
+test('basicAuth works standalone', async (t) => {
+  const fastify = Fastify()
+  fastify.register(BasicAuth)
 
-  try {
-    const res = await app.inject({
-      url: '/user',
-      headers: {
-        Authorization: 'Basic badtoken21'
-      }
-    })
-  } catch (err) {
-    console.log(err);
-    test.error(err);
-  }
+  await fastify.ready()
 })
