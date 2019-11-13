@@ -27,6 +27,7 @@ module.exports = async function (fastify, opts) {
         body
 
       })
+      reply.code(201)
       return { id }
     }
   })
