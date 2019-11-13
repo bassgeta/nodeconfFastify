@@ -2,7 +2,7 @@
 
 const { hostname } = require('os')
 const hyperid = require('hyperid')
-const instance = hyperid()
+const instance = hyperid({ urlSafe: true })
 
 module.exports = async function (fastify, opts) {
   fastify.route({
